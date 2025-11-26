@@ -154,7 +154,7 @@
      sherlock
      proxychains
      libreoffice-qt6-fresh
-     
+     kitty
      vlc
      nodejs
      ghidra-bin
