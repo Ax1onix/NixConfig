@@ -78,16 +78,13 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.axionix = {
     isNormalUser = true;
     description = "Axionix";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    shell = pkgs.zsh;
   };
   
   programs.git = {
@@ -104,6 +101,20 @@
     policies.DisableTelemetry = true;
 
   };
+  
+
+
+  programs.zsh = {
+    ohMyZsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "z"
+      ];
+      theme = "darkblood";
+    };
+  };
+
   programs.nvf = {
     enable = true;
     defaultEditor = true;
@@ -154,12 +165,12 @@
      sherlock
      proxychains
      libreoffice-qt6-fresh
-     kitty
      vlc
      nodejs
      ghidra-bin
      python314
      zoom-us
+     wezterm
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
