@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, zen-browser, ... }:
 
 {
   imports =
@@ -171,6 +171,8 @@
      python314
      zoom-us
      wezterm
+     openvpn
+     zen-browser.packages.${pkgs.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
