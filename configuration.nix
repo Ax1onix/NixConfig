@@ -2,12 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, zen-browser, ... }:
+{ config, lib, pkgs,  ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./kdee.nix
+      ./graphics.nix
+      ./proxyy.nix
     ];
 
   # Bootloader.
@@ -43,22 +46,10 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #Import other config files
+  kdee.enable = true;
+  graphics.enable = true;
+  proxyy.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -69,7 +60,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    wireplumber.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -87,6 +78,7 @@
     shell = pkgs.zsh;
   };
   
+
   programs.git = {
     enable = true;
     config = {
@@ -163,7 +155,6 @@
      telegram-desktop
      vesktop
      sherlock
-     proxychains
      libreoffice-qt6-fresh
      vlc
      nodejs
@@ -172,7 +163,11 @@
      zoom-us
      wezterm
      openvpn
-     zen-browser.packages.${pkgs.system}.default
+     go 
+     httpie
+     jq
+     qbittorrent
+     obsidian
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
