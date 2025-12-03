@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/filesystems.nix             # Your custom portable mounts (overrides)
+      ./modules/bootloader.nix              # GRUB EFI/removable
       ./kdee.nix
       ./graphics.nix
       ./proxyy.nix
