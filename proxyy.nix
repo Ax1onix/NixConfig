@@ -13,19 +13,19 @@
           enable = true;
           type = "socks5";
           host = "188.191.164.55";
-          port = "4890";
+          port = 4890;
         };
         myproxy2 = {
           enable = true;
           type = "http";
           host = "95.66.244.250";
-          port = "443";
+          port = 443;
         };
         myproxy3 = {
           enable = true;
           type = "http";
           host = "46.28.88.19";
-          port = "8080";
+          port = 8080;
         };
       };
     };
